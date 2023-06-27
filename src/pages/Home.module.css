@@ -1,0 +1,24 @@
+.Home{
+    margin-left: 100px;
+}
+
+.Link{
+    text-decoration: none;    
+    color: dimgrey;
+}
+
+.Input{
+    margin-right: 40px;
+    width: 320px;
+    height: 32px;
+    border-radius: 10px;
+    font-size: larger;
+}
+
+.Btn{
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: aliceblue;
+    background-color: brown;
+}
