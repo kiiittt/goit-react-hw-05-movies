@@ -10,7 +10,6 @@ const defaultImage =
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-
   const location = useLocation();
   const locationRef = useRef(location);
 
@@ -36,7 +35,7 @@ const MovieDetails = () => {
 
   return (
     <div className={css.Detail}>
-      <ButtonBack location={locationRef.current} />
+      <ButtonBack location={locationRef.current} className={css.BtnBack} />
       <div className={css.Div}>
         <div>
           <img

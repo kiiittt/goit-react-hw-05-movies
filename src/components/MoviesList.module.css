@@ -1,0 +1,11 @@
+.List{
+    padding: 0;
+    margin-left: 60px;
+    list-style-type: none;
+}
+
+.Link{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}

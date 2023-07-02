@@ -1,0 +1,22 @@
+.form {
+    margin-top: 40px;
+    margin-left: 60px;
+    display: inline-flex;
+    margin-bottom: 20px;
+}
+
+.input {
+    margin-right: 40px;
+    width: 320px;
+    height: 32px;
+    border-radius: 10px;
+    font-size: larger;
+}
+
+.searchBtn {
+    height: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: aliceblue;
+    background-color: brown;
+}
