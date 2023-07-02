@@ -32,19 +32,18 @@ const MovieDetails = () => {
     return <div>Loading...</div>;
   }
 
+  const imageUrl = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+
   return (
     <div className={css.Detail}>
       <ButtonBack location={locationRef.current} />
       <div className={css.Div}>
         <div>
           <img
-            src={
-              movie.poster_path
-                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-                : defaultImage
-            }
+            src={imageUrl !== null ? imageUrl : defaultImage}
             alt={movie.title}
-          />
+            className={css.image}
+          ></img>
         </div>
 
         <div className={css.DivText}>
