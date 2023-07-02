@@ -10,8 +10,8 @@ import css from './MovieDetails.module.css';
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  const [ setCast] = useState([]);
-  const [ setReviews] = useState([]);
+  const [cast, setCast] = useState([]);
+  const [reviews, setReviews] = useState([]);
   // const [isCastVisible, setIsCastVisible] = useState(false);
   // const [areReviewsVisible, setAreReviewsVisible] = useState(false);
     const location = useLocation();
@@ -37,7 +37,7 @@ const MovieDetails = () => {
     };
 
     fetchMovieData();
-  }, [ ]);
+  }, [movieId]);
 
   if (!movie) {
     return <p>Loading movie details...</p>;
