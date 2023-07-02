@@ -1,39 +1,27 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
-import {
-  fetchMovieDetails,
-  fetchMovieCredits,
-  fetchMovieReviews,
-} from '../Api';
 import css from './MovieDetails.module.css';
+import { useEffect, useState, useRef } from 'react';
+import { useParams, Link, Outlet, useLocation } from 'react-router-dom';
+import { fetchMovieDetails } from '../Api';
+import ButtonBack from '../components/ButtonBack';
+
+const defaultImage =
+  'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  const [cast, setCast] = useState([]);
-  // eslint-disable-next-line no-unused-vars
-  const [reviews, setReviews] = useState([]);
-  // const [isCastVisible, setIsCastVisible] = useState(false);
-  // const [areReviewsVisible, setAreReviewsVisible] = useState(false);
-  const location = useLocation();
 
-  console.log(location);
+  const location = useLocation();
+  const locationRef = useRef(location);
 
   useEffect(() => {
     const fetchMovieData = async () => {
       try {
         const movieData = await fetchMovieDetails(movieId);
-        const castData = await fetchMovieCredits(movieId);
-        const reviewsData = await fetchMovieReviews(movieId);
-
         setMovie(movieData);
-        setCast(castData);
-        setReviews(reviewsData);
       } catch (error) {
-        console.log('Error fetching movie details:', error);
+        console.log('error', error);
         setMovie(null);
-        setCast([]);
-        setReviews([]);
       }
     };
 
@@ -41,21 +29,29 @@ const MovieDetails = () => {
   }, [movieId]);
 
   if (!movie) {
-    return <p>Loading movie details...</p>;
+    return <div>Loading...</div>;
   }
-
-  const imageUrl = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 
   return (
     <div className={css.Detail}>
-      <Link to={location.state?.from}>Go back</Link>
+      <ButtonBack location={locationRef.current} />
       <div className={css.Div}>
         <div>
-          <img src={imageUrl} alt={movie.title} />
+          <img
+            src={
+              movie.poster_path
+                ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+                : defaultImage
+            }
+            alt={movie.title}
+          />
         </div>
 
         <div className={css.DivText}>
-          <h1>{movie.title}</h1>
+          <h1>
+            {' '}
+            {movie.title}({movie.release_date.slice(0, 4)})
+          </h1>
           <p>User score: {(movie.vote_average * 10).toFixed(0)}%</p>
           <p>Release Date: {movie.release_date}</p>
           <p>Overview: {movie.overview}</p>
