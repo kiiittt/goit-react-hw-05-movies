@@ -10,11 +10,7 @@ import css from './MovieDetails.module.css';
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
-  const [cast, setCast] = useState([]);
-  const [reviews, setReviews] = useState([]);
-  const [isCastVisible, setIsCastVisible] = useState(false);
-  const [areReviewsVisible, setAreReviewsVisible] = useState(false);
-    const location = useLocation();
+  const location = useLocation();
 
   console.log(location);
 
@@ -22,17 +18,10 @@ const MovieDetails = () => {
     const fetchMovieData = async () => {
       try {
         const movieData = await fetchMovieDetails(movieId);
-        const castData = await fetchMovieCredits(movieId);
-        const reviewsData = await fetchMovieReviews(movieId);
-
         setMovie(movieData);
-        setCast(castData);
-        setReviews(reviewsData);
       } catch (error) {
         console.log('Error fetching movie details:', error);
         setMovie(null);
-        setCast([]);
-        setReviews([]);
       }
     };
 
@@ -43,8 +32,8 @@ const MovieDetails = () => {
     return <p>Loading movie details...</p>;
   }
 
-  const defaultImage =
-    'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
+  // const defaultImage =
+  //   'https://ireland.apollo.olxcdn.com/v1/files/0iq0gb9ppip8-UA/image;s=1000x700';
   const imageUrl = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 
   return (

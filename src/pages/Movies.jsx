@@ -46,11 +46,16 @@ const Movies = () => {
       {searchResults.length > 0 ? (
         <div className={css.Results}>
           <h2>Search Results:</h2>
+          <p>Search Query: {searchQuery}</p>
           <ul className={css.List}>
             {searchResults.map(movie => (
               <li key={movie.id}>
-                <Link to={`/movies/${movie.id}`} state={{ from: location }}
-                  className={css.Link}>{movie.title}
+                <Link
+                  to={`/movies/${movie.id}`}
+                  state={{ from: location }}
+                  className={css.Link}
+                >
+                  {movie.title}
                 </Link>
               </li>
             ))}
@@ -61,6 +66,6 @@ const Movies = () => {
       )}
     </main>
   );
-};
+}
 
 export default Movies;
