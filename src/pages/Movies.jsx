@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import css from './Home.module.css';
 import { fetchMovieSearch } from '../Api';
 import { Link } from 'react-router-dom';
 
-
 const Movies = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const location = useLocation();
+
+  console.log(location)
 
   const handleSearch = async e => {
     e.preventDefault();
@@ -46,8 +49,8 @@ const Movies = () => {
           <ul className={css.List}>
             {searchResults.map(movie => (
               <li key={movie.id}>
-                <Link to={`/movies/${movie.id}`} className={css.Link}>
-                  {movie.title}
+                <Link to={`/movies/${movie.id}`} state={{ from: location }}
+                  className={css.Link}>{movie.title}
                 </Link>
               </li>
             ))}
