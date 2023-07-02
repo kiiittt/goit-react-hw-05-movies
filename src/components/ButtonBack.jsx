@@ -6,7 +6,7 @@ const ButtonBack = ({ location }) => {
   console.log(location);
   return (
     <button type="button" onClick={() => navigate(location.state?.from ?? '/')}>
-      &larr; Назад
+      &larr; Go back
     </button>
   );
 };
