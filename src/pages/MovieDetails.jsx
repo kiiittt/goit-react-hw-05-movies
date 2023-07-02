@@ -11,10 +11,11 @@ const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [cast, setCast] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [reviews, setReviews] = useState([]);
   // const [isCastVisible, setIsCastVisible] = useState(false);
   // const [areReviewsVisible, setAreReviewsVisible] = useState(false);
-    const location = useLocation();
+  const location = useLocation();
 
   console.log(location);
 
